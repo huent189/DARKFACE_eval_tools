@@ -27,22 +27,29 @@ end
 try
     gt_folder = (argv(){2});
 catch
-    fprintf('Please specify gt_folder, using `/tools/data/gt` instead')
+    fprintf('Please specify gt_folder, using `./data/gt` instead')
     gt_folder = './data/gt';
 end
 
 try
     sub_folder = (argv(){3});
 catch
-    fprintf('Please specify sub_folder, using `/tools/data/result` instead')
+    fprintf('Please specify sub_folder, using `./data/result` instead')
     sub_folder = './data/result';
 end
 
-cur_name = algo_name;
-algo_name
+try
+    common_prefix  = (argv(){4});
+catch
+    fprintf('Please specify sub_folder, using `./data/result` instead')
+    common_prefix = './data/result';
+end
 
-pred_list = read_pred(pred_dir,file_list, sub_folder);
-gt_list = read_gt(gt_dir,file_list, gt_folder);
+cur_name = algo_name;
+% algo_name
+
+pred_list = read_pred(pred_dir,file_list, sub_folder, common_prefix);
+gt_list = read_gt(gt_dir,file_list, gt_folder, common_prefix);
 
 norm_pred_list = norm_score(pred_list);
 

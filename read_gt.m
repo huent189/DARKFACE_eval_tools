@@ -1,11 +1,11 @@
-function gt_list = read_gt(file_dir, file_list, gt_folder)
+function gt_list = read_gt(file_dir, file_list, gt_folder, common_prefix)
 event_num = 1;
 event_list = {1};
 gt_list = cell(event_num,1);
 
 for i = 1:event_num
     fprintf('Reading gt\n');
-    img_list = strrep(file_list{i}, './data/gt/', gt_folder);
+    img_list = strrep(file_list{i}, common_prefix, gt_folder);
     img_num = size(img_list,1);
     bbx_list = cell(img_num,1);
     for j = 1:img_num

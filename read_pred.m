@@ -1,11 +1,11 @@
-function pred_list = read_pred(file_dir, file_list, sub_folder)
+function pred_list = read_pred(file_dir, file_list, sub_folder, common_prefix)
 event_num = 1;
 event_list = {1};
 pred_list = cell(event_num,1);
 
 for i = 1:event_num
     fprintf('Reading prediction\n');
-    img_list = strrep(file_list{i}, './data/gt/', sub_folder);
+    img_list = strrep(file_list{i}, common_prefix, sub_folder);
     img_num = size(img_list,1);
     bbx_list = cell(img_num,1);
     for j = 1:img_num
